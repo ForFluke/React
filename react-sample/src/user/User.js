@@ -17,13 +17,15 @@ class User extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.data.map(user =>(
+                        {this.props.data === undefined ? (<div> </div> ) : (
+                        this.props.data.map(user =>(
                             <tr key={user.id}>
                                 <td> {user.id} </td>
                                 <td> {user.name} </td>
                                 <td> {user.email} </td>
                             </tr>
-                            ))}
+                            ))
+                    )}
                     </tbody>
                 </table>
             </div>
@@ -31,4 +33,4 @@ class User extends Component {
         );
     }
 }
-export default withRequest('https://jsonplaceholder.typicode.com/users')(User);
+export default User;
