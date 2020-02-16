@@ -1,15 +1,8 @@
 import React , { Component } from  "react";
 import axios from 'axios' ;
+import withRequest from '../lip/withRequest';
 
 class User extends Component {
-  state = {
-    data : []
-  };
-
-    async componentDidMount(){
-        const result = await axios.get('https://jsonplaceholder.typicode.com/users')
-        this.setState({data : result.data })
-    }
 
     render(){
         return (
@@ -24,8 +17,8 @@ class User extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.data.map(user =>(
-                            <tr>
+                        {this.props.data.map(user =>(
+                            <tr key={user.id}>
                                 <td> {user.id} </td>
                                 <td> {user.name} </td>
                                 <td> {user.email} </td>
@@ -38,4 +31,4 @@ class User extends Component {
         );
     }
 }
-export default User;
+export default withRequest('https://jsonplaceholder.typicode.com/users')(User);

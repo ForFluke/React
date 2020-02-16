@@ -1,15 +1,8 @@
 import React , { Component } from  "react";
 import axios from 'axios' ;
+import withRequest from '../lip/withRequest';
 
 class Post extends Component {
-  state = {
-    data : []
-  };
-
-    async componentDidMount(){
-        const result = await axios.get('https://jsonplaceholder.typicode.com/posts')
-        this.setState({data : result.data })
-    }
 
     render(){
         return (
@@ -25,8 +18,8 @@ class Post extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.data.map(post =>(
-                            <tr>
+                        {this.props.data.map(post =>(
+                            <tr key={post.id}>
                                 <td> {post.userId} </td>
                                 <td> {post.id} </td>
                                 <td> {post.titla} </td>
@@ -40,4 +33,4 @@ class Post extends Component {
         );
     }
 }
-export default Post;
+export default withRequest('https://jsonplaceholder.typicode.com/posts')(Post);
