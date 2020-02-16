@@ -1,13 +1,13 @@
 import React , { Component } from  "react";
 import axios from 'axios' ;
 
-class User extends Component {
+class Post extends Component {
   state = {
     data : []
   };
 
     async componentDidMount(){
-        const result = await axios.get('https://jsonplaceholder.typicode.com/users')
+        const result = await axios.get('https://jsonplaceholder.typicode.com/posts')
         this.setState({data : result.data })
     }
 
@@ -18,17 +18,19 @@ class User extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <td>Id</td>
-                            <td>name</td>
-                            <td>Email</td>
+                            <td>User Id</td>
+                            <td>id</td>
+                            <td>Title</td>
+                            <td>body</td>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.data.map(user =>(
+                        {this.state.data.map(post =>(
                             <tr>
-                                <td> {user.id} </td>
-                                <td> {user.name} </td>
-                                <td> {user.email} </td>
+                                <td> {post.userId} </td>
+                                <td> {post.id} </td>
+                                <td> {post.titla} </td>
+                                <td> {post.body} </td>
                             </tr>
                             ))}
                     </tbody>
@@ -38,4 +40,4 @@ class User extends Component {
         );
     }
 }
-export default User;
+export default Post;
